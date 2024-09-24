@@ -48,7 +48,7 @@ h1 {
 }
 
 .todo-input::placeholder {
-  color: #dadada;
+  color: var(--gm3-sys-color-on-surface-variant, #b1b1b1);
 }
 
 .todo-btn {
