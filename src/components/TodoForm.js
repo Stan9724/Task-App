@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const TodoForm = ({ addTodo }) => {
     const [value, setValue] = useState("");
@@ -11,20 +13,32 @@ export const TodoForm = ({ addTodo }) => {
         if (value.trim() !== "") {
             addTodo(value);
             setValue("");
+        } else {
+            toast.error("Veuillez entrer une tâche valide", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     };
 
     return (
-        <form className='TodoForm' onSubmit={handleSubmit}>
-            <input
-                type='text'
-                className='todo-input'   
+        <><div>
+            <ToastContainer />
+        </div>
+            <form className='TodoForm' onSubmit={handleSubmit}>
+                <input
+                    type='text'
+                    className='todo-input'
 
-                value={value}
-                placeholder='Quelle est la tâche du jour ?'
-                onChange={(e) => setValue(e.target.value)}
-            />
-            <button type='submit' className='todo-btn'>Ajouter la tâche</button>
-        </form>
+                    value={value}
+                    placeholder='Quelle est la tâche du jour ?'
+                    onChange={(e) => setValue(e.target.value)} />
+                <button type='submit' className='todo-btn'>Ajouter la tâche</button>
+            </form></>
     );
 };
